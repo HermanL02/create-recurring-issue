@@ -1,0 +1,16 @@
+name: Create Daily GitLab Issues
+
+on:
+  schedule:
+    - cron: '0 4 * * *' # UTC time 4 AM
+
+jobs:
+  create-issues:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Create Trello Check Issue on GitLab
+      run: |
+        curl --request POST --header "PRIVATE-TOKEN: ${{ secrets.GITLAB_ACCESS_TOKEN }}" --data "title=Trello Check&description=Daily Trello check." "https://gitlab.com/api/v4/projects/55692458/issues"
+    - name: Create Inter-ops Delegate Check Issue on GitLab
+      run: |
+        curl --request POST --header "PRIVATE-TOKEN: ${{ secrets.GITLAB_ACCESS_TOKEN }}" --data "title=Inter-ops Delegate Check&description=Daily inter-ops delegate check." "https://gitlab.com/api/v4/projects/55692458/issues"

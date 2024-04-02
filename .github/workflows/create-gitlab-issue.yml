@@ -3,6 +3,7 @@ name: Create Daily GitLab Issues
 on:
   schedule:
     - cron: '0 4 * * *' # UTC time 4 AM
+  workflow_dispatch:
 
 jobs:
   create-issues:
